@@ -27,5 +27,5 @@ jobs:
 
       - name: Run Test
         run: |
-          java YourProgram test1.txt 1 > program_output.txt
+          java tz2_program_separate_func test1.txt 1 > program_output.txt
           diff program_output.txt test1.txt
