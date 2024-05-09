@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class tz_2_program {
+public class tz2_program_separate_func {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String file_name = scanner.nextLine();
