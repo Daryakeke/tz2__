@@ -25,7 +25,8 @@ jobs:
       - name: Compile Java Program
         run: javac tz2_program_separate_func.java
 
-      - name: Run Test
+      - name: Run Tests
         run: |
-          java tz2_program_separate_func test1.txt 1 > program_output.txt
-          diff program_output.txt test1.txt
+          while IFS= read -r input; do
+            echo "$input" | java tz2_program_separate_func > output.txt
+          done < test_input.txt
