@@ -1,32 +1,20 @@
-name: Java Test
+name: Java CI
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  test:
+
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Set up JDK
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-
-      - name: Compile Java Program
-        run: javac tz2_program_separate_func.java
-
-      - name: Run Tests
-        run: |
-          while IFS= read -r input; do
-            echo "$input" | java tz2_program_separate_func > output.txt
-          done < test_input.txt
+    - uses: actions/checkout@v2
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'adopt'
+    - name: Build with Maven
+      run: mvn --batch-mode --update-snapshots package
+    - name: Run tests
+      run: mvn test
